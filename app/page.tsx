@@ -1,3 +1,5 @@
+import AppointmentForm from "./AppointmentForm";
+
 export default function Home() {
   const categories = [
     { name: "SUV", icon: "🚙" },
@@ -262,70 +264,7 @@ export default function Home() {
           <h2 className="text-2xl sm:text-3xl font-semibold text-zinc-900 mb-10 text-center">
             Book an Appointment
           </h2>
-          <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-zinc-900 mb-2">Name</label>
-              <input
-                id="name"
-                type="text"
-                className="w-full rounded-lg border border-zinc-300 px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
-                placeholder="Your full name"
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-zinc-900 mb-2">Email</label>
-              <input
-                id="email"
-                type="email"
-                className="w-full rounded-lg border border-zinc-300 px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
-                placeholder="you@example.com"
-              />
-            </div>
-            <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-zinc-900 mb-2">Phone</label>
-              <input
-                id="phone"
-                type="tel"
-                className="w-full rounded-lg border border-zinc-300 px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
-                placeholder="(555) 123-4567"
-              />
-            </div>
-            <div>
-              <label htmlFor="date" className="block text-sm font-medium text-zinc-900 mb-2">Preferred Date</label>
-              <input
-                id="date"
-                type="date"
-                className="w-full rounded-lg border border-zinc-300 px-4 py-3 text-zinc-900 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
-              />
-            </div>
-            <div>
-              <label htmlFor="time" className="block text-sm font-medium text-zinc-900 mb-2">Preferred Time</label>
-              <select
-                id="time"
-                className="w-full rounded-lg border border-zinc-300 px-4 py-3 text-zinc-900 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
-              >
-                <option value="">Select a time</option>
-                <option value="morning">Morning</option>
-                <option value="afternoon">Afternoon</option>
-                <option value="evening">Evening</option>
-              </select>
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-zinc-900 mb-2">Message (optional)</label>
-              <textarea
-                id="message"
-                rows={4}
-                className="w-full rounded-lg border border-zinc-300 px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20 resize-none"
-                placeholder="Tell us about your visit..."
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-red-600 text-white font-medium py-4 rounded-lg hover:bg-red-700 transition-colors"
-            >
-              Request Appointment
-            </button>
-          </form>
+          <AppointmentForm />
         </div>
       </section>
 
