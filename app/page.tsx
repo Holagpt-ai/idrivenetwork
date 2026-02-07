@@ -227,6 +227,121 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Trust / Value Section */}
+      <section className="px-6 py-16 md:py-20 bg-zinc-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-3 gap-8 text-center">
+            <div>
+              <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center text-xl mx-auto mb-4">
+                ✓
+              </div>
+              <h3 className="font-semibold text-zinc-900 mb-2">Trusted Local Dealer</h3>
+              <p className="text-zinc-600 text-sm">Serving our community for years with integrity and transparency.</p>
+            </div>
+            <div>
+              <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center text-xl mx-auto mb-4">
+                ✓
+              </div>
+              <h3 className="font-semibold text-zinc-900 mb-2">Quality Inspected Vehicles</h3>
+              <p className="text-zinc-600 text-sm">Every vehicle undergoes a rigorous multi-point inspection.</p>
+            </div>
+            <div>
+              <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center text-xl mx-auto mb-4">
+                ✓
+              </div>
+              <h3 className="font-semibold text-zinc-900 mb-2">Easy Financing Options</h3>
+              <p className="text-zinc-600 text-sm">Flexible plans to fit your budget. Get pre-approved in minutes.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Appointment Section */}
+      <section id="appointment" className="px-6 py-16 md:py-24 bg-white">
+        <div className="max-w-xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-zinc-900 mb-10 text-center">
+            Book an Appointment
+          </h2>
+          <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-zinc-900 mb-2">Name</label>
+              <input
+                id="name"
+                type="text"
+                className="w-full rounded-lg border border-zinc-300 px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
+                placeholder="Your full name"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-zinc-900 mb-2">Email</label>
+              <input
+                id="email"
+                type="email"
+                className="w-full rounded-lg border border-zinc-300 px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
+                placeholder="you@example.com"
+              />
+            </div>
+            <div>
+              <label htmlFor="phone" className="block text-sm font-medium text-zinc-900 mb-2">Phone</label>
+              <input
+                id="phone"
+                type="tel"
+                className="w-full rounded-lg border border-zinc-300 px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
+                placeholder="(555) 123-4567"
+              />
+            </div>
+            <div>
+              <label htmlFor="date" className="block text-sm font-medium text-zinc-900 mb-2">Preferred Date</label>
+              <input
+                id="date"
+                type="date"
+                className="w-full rounded-lg border border-zinc-300 px-4 py-3 text-zinc-900 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
+              />
+            </div>
+            <div>
+              <label htmlFor="time" className="block text-sm font-medium text-zinc-900 mb-2">Preferred Time</label>
+              <select
+                id="time"
+                className="w-full rounded-lg border border-zinc-300 px-4 py-3 text-zinc-900 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
+              >
+                <option value="">Select a time</option>
+                <option value="morning">Morning</option>
+                <option value="afternoon">Afternoon</option>
+                <option value="evening">Evening</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-zinc-900 mb-2">Message (optional)</label>
+              <textarea
+                id="message"
+                rows={4}
+                className="w-full rounded-lg border border-zinc-300 px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20 resize-none"
+                placeholder="Tell us about your visit..."
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-red-600 text-white font-medium py-4 rounded-lg hover:bg-red-700 transition-colors"
+            >
+              Request Appointment
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* Footer CTA */}
+      <section className="px-6 py-14 md:py-16 bg-zinc-100 text-center">
+        <p className="text-xl sm:text-2xl font-semibold text-zinc-900 mb-6">
+          Ready to find your next car?
+        </p>
+        <a
+          href="#inventory"
+          className="inline-block bg-red-600 text-white font-medium px-8 py-4 rounded-lg hover:bg-red-700 transition-colors"
+        >
+          Browse Inventory
+        </a>
+      </section>
+
       {/* Footer */}
       <footer className="bg-zinc-900 text-white">
         <div className="max-w-6xl mx-auto px-6 py-14 md:py-20">
