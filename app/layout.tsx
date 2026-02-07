@@ -35,6 +35,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <header className="w-full border-b border-zinc-200/50 bg-white/95 backdrop-blur-sm">
+          <div className="max-w-6xl mx-auto px-6 py-2 flex items-center justify-end">
+            <p className="text-[10px] sm:text-xs text-zinc-400/70 text-right max-w-full">
+              <span className="hidden sm:inline">Created by: carlos.acosta@holagpt.es · SEOPluss · (239) 205-0449</span>
+              <span className="sm:hidden">SEOPluss · (239) 205-0449</span>
+            </p>
+          </div>
+        </header>
         {children}
         <ChatWidgetLoader />
       </body>
