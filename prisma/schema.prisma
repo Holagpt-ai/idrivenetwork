@@ -17,3 +17,17 @@ model Appointment {
   notes              String?
   createdAt          DateTime @default(now())
 }
+
+model Car {
+  id           String   @id @default(cuid())
+  make         String
+  model        String
+  year         Int
+  price        Int
+  mileage      Int
+  transmission String
+  fuelType     String
+  imageUrl     String
+  isFeatured   Boolean  @default(false)
+  createdAt    DateTime @default(now())
+}

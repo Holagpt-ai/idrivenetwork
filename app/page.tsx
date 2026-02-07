@@ -1,6 +1,12 @@
 import AppointmentForm from "./AppointmentForm";
+import { prisma } from "@/lib/prisma";
 
-export default function Home() {
+export default async function Home() {
+  const featuredCars = await prisma.car.findMany({
+    where: { isFeatured: true },
+    orderBy: { createdAt: "desc" },
+  });
+
   const categories = [
     { name: "SUV", icon: "🚙" },
     { name: "Sedan", icon: "🚗" },
@@ -8,41 +14,6 @@ export default function Home() {
     { name: "Truck", icon: "🛻" },
     { name: "EV / Hybrid", icon: "⚡" },
     { name: "Luxury", icon: "✨" },
-  ];
-
-  const featuredCars = [
-    {
-      make: "BMW",
-      model: "330i xDrive",
-      price: "$45,990",
-      year: "2024",
-      mileage: "8,200 mi",
-      transmission: "Automatic",
-    },
-    {
-      make: "Mercedes-Benz",
-      model: "GLC 300",
-      price: "$52,450",
-      year: "2023",
-      mileage: "14,500 mi",
-      transmission: "9G-Tronic",
-    },
-    {
-      make: "Porsche",
-      model: "911 Carrera",
-      price: "$118,200",
-      year: "2024",
-      mileage: "2,100 mi",
-      transmission: "PDK",
-    },
-    {
-      make: "Tesla",
-      model: "Model 3 Long Range",
-      price: "$41,990",
-      year: "2024",
-      mileage: "4,800 mi",
-      transmission: "Single-Speed",
-    },
   ];
 
   const testimonials = [
@@ -142,33 +113,43 @@ export default function Home() {
           <h2 className="text-2xl sm:text-3xl font-semibold text-zinc-900 mb-12">
             Featured Vehicles
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredCars.map((car) => (
-              <div
-                key={`${car.make}-${car.model}`}
-                className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300"
-              >
-                <div className="aspect-[4/3] bg-zinc-100 relative flex items-center justify-center">
-                  <span className="text-zinc-400 text-sm">Car Image</span>
+          {featuredCars.length === 0 ? (
+            <p className="text-zinc-500 text-center py-12">No featured vehicles at the moment. Check back soon.</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {featuredCars.map((car) => (
+                <div
+                  key={car.id}
+                  className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="aspect-[4/3] bg-zinc-100 relative flex items-center justify-center overflow-hidden">
+                    {car.imageUrl ? (
+                      <img src={car.imageUrl} alt={`${car.make} ${car.model}`} className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="text-zinc-400 text-sm">Car Image</span>
+                    )}
+                  </div>
+                  <div className="p-5 space-y-3">
+                    <h3 className="font-semibold text-zinc-900 text-lg">
+                      {car.make} {car.model}
+                    </h3>
+                    <p className="text-red-600 font-bold text-xl">
+                      ${car.price.toLocaleString()}
+                    </p>
+                    <p className="text-sm text-zinc-500">
+                      {car.year} | {car.mileage.toLocaleString()} mi | {car.transmission}
+                    </p>
+                    <a
+                      href="#"
+                      className="block w-full text-center bg-red-600 text-white font-medium py-3 rounded-lg hover:bg-red-700 transition-colors mt-2"
+                    >
+                      View Details
+                    </a>
+                  </div>
                 </div>
-                <div className="p-5 space-y-3">
-                  <h3 className="font-semibold text-zinc-900 text-lg">
-                    {car.make} {car.model}
-                  </h3>
-                  <p className="text-red-600 font-bold text-xl">{car.price}</p>
-                  <p className="text-sm text-zinc-500">
-                    {car.year} | {car.mileage} | {car.transmission}
-                  </p>
-                  <a
-                    href="#"
-                    className="block w-full text-center bg-red-600 text-white font-medium py-3 rounded-lg hover:bg-red-700 transition-colors mt-2"
-                  >
-                    View Details
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
