@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Image from "next/image";
 import AppointmentForm from "./AppointmentForm";
 import SubscribeForm from "./SubscribeForm";
