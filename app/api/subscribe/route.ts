@@ -4,6 +4,12 @@ import { prisma } from "@/lib/prisma";
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
+  if (!prisma) {
+    return NextResponse.json(
+      { error: "Service temporarily unavailable" },
+      { status: 503 }
+    );
+  }
   try {
     const body = await request.json();
     const { email, zipCode } = body;

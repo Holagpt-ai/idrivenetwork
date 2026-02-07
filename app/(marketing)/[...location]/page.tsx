@@ -65,19 +65,20 @@ export default async function LocationPage({ params }: PageProps) {
 
   const locName = getLocationDisplayName(loc);
 
-  const where = loc.zipCode
-    ? { zipCode: loc.zipCode }
-    : { city: { equals: loc.city, mode: "insensitive" as const } };
-
-  let cars = await prisma.car.findMany({
-    where,
-    orderBy: { createdAt: "desc" },
-  });
-
-  if (cars.length === 0) {
+  let cars: { id: string; make: string; model: string; year: number; price: number; mileage: number; transmission: string; imageUrl: string }[] = [];
+  if (prisma) {
+    const where = loc.zipCode
+      ? { zipCode: loc.zipCode }
+      : { city: { equals: loc.city, mode: "insensitive" as const } };
     cars = await prisma.car.findMany({
+      where,
       orderBy: { createdAt: "desc" },
     });
+    if (cars.length === 0) {
+      cars = await prisma.car.findMany({
+        orderBy: { createdAt: "desc" },
+      });
+    }
   }
 
   type CarItem = (typeof cars)[number];

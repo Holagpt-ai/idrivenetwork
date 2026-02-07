@@ -12,6 +12,7 @@ export type InventoryItem = {
 };
 
 export async function getInventorySummary(limit = 10): Promise<InventoryItem[]> {
+  if (!prisma) return [];
   const cars = await prisma.car.findMany({
     take: limit,
     orderBy: { isFeatured: "desc" },

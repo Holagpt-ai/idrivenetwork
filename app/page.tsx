@@ -6,10 +6,12 @@ import SubscribeForm from "./SubscribeForm";
 import { prisma } from "@/lib/prisma";
 
 export default async function Home() {
-  const featuredCars = await prisma.car.findMany({
-    where: { isFeatured: true },
-    orderBy: { createdAt: "desc" },
-  });
+  const featuredCars = prisma
+    ? await prisma.car.findMany({
+        where: { isFeatured: true },
+        orderBy: { createdAt: "desc" },
+      })
+    : [];
 
   type CarItem = (typeof featuredCars)[number];
 
