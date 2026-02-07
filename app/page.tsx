@@ -1,89 +1,62 @@
-export const dynamic = "force-dynamic";
-
 import Image from "next/image";
 import AppointmentForm from "./AppointmentForm";
 import SubscribeForm from "./SubscribeForm";
 
-export default async function Home() {
-  const featuredCars: { id: string; make: string; model: string; year: number; price: number; mileage: number; transmission: string; imageUrl: string }[] = [];
+const CARS = [
+  { id: "1", make: "BMW", model: "330i xDrive", year: 2024, price: 45990, fuelType: "Gasoline", transmission: "Automatic", imageUrl: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600" },
+  { id: "2", make: "Mercedes-Benz", model: "GLC 300", year: 2023, price: 52450, fuelType: "Gasoline", transmission: "9G-Tronic", imageUrl: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600" },
+  { id: "3", make: "Porsche", model: "911 Carrera", year: 2024, price: 118200, fuelType: "Gasoline", transmission: "PDK", imageUrl: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600" },
+  { id: "4", make: "Tesla", model: "Model 3 Long Range", year: 2024, price: 41990, fuelType: "Electric", transmission: "Single-Speed", imageUrl: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=600" },
+  { id: "5", make: "Ford", model: "F-150 Lightning", year: 2024, price: 54995, fuelType: "Electric", transmission: "Single-Speed", imageUrl: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600" },
+  { id: "6", make: "Audi", model: "Q5 Premium", year: 2023, price: 48900, fuelType: "Gasoline", transmission: "Automatic", imageUrl: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600" },
+  { id: "7", make: "Lexus", model: "RX 350", year: 2024, price: 52350, fuelType: "Hybrid", transmission: "CVT", imageUrl: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600" },
+  { id: "8", make: "Honda", model: "CR-V EX", year: 2023, price: 32900, fuelType: "Gasoline", transmission: "CVT", imageUrl: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=600" },
+  { id: "9", make: "Toyota", model: "Camry XSE", year: 2024, price: 35400, fuelType: "Gasoline", transmission: "Automatic", imageUrl: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=600" },
+];
 
-  type CarItem = (typeof featuredCars)[number];
+const TESTIMONIALS = [
+  { name: "Sarah Mitchell", quote: "Best car buying experience I've ever had. The team at iDrive made everything seamless—from test drive to paperwork.", initial: "SM" },
+  { name: "James Thompson", quote: "Found my dream SUV here. Fair pricing, no pressure, and they even helped with financing. Highly recommend.", initial: "JT" },
+  { name: "Emily Rodriguez", quote: "Professional from start to finish. iDrive exceeded all my expectations. Will definitely be back for our next vehicle.", initial: "ER" },
+];
 
-  const categories = [
-    { name: "SUV", icon: "🚙" },
-    { name: "Sedan", icon: "🚗" },
-    { name: "Coupe", icon: "🏎️" },
-    { name: "Truck", icon: "🛻" },
-    { name: "EV / Hybrid", icon: "⚡" },
-    { name: "Luxury", icon: "✨" },
-  ];
+const BLOG_POSTS = [
+  { title: "Top 10 Features to Look for in Your Next SUV", excerpt: "Discover what matters most when choosing your next family vehicle.", imageUrl: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600" },
+  { title: "Electric vs Hybrid: Making the Right Choice", excerpt: "A practical guide to help you decide which option fits your lifestyle.", imageUrl: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600" },
+  { title: "Winter Driving Tips for New Car Owners", excerpt: "Stay safe on the road with these essential winter maintenance tips.", imageUrl: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600" },
+];
 
-  const testimonials = [
-    {
-      name: "Sarah Mitchell",
-      quote:
-        "Best car buying experience I've ever had. The team at iDrive made everything seamless—from test drive to paperwork.",
-    },
-    {
-      name: "James Thompson",
-      quote:
-        "Found my dream SUV here. Fair pricing, no pressure, and they even helped with financing. Highly recommend.",
-    },
-    {
-      name: "Emily Rodriguez",
-      quote:
-        "Professional from start to finish. iDrive exceeded all my expectations. Will definitely be back for our next vehicle.",
-    },
-  ];
-
-  const blogPosts = [
-    {
-      title: "Top 10 Features to Look for in Your Next SUV",
-      excerpt:
-        "Discover what matters most when choosing your next family vehicle. Safety, space, and tech—we break it down.",
-    },
-    {
-      title: "Electric vs Hybrid: Making the Right Choice",
-      excerpt:
-        "A practical guide to help you decide which option fits your lifestyle and budget in 2024.",
-    },
-    {
-      title: "Winter Driving Tips for New Car Owners",
-      excerpt:
-        "Stay safe on the road with these essential winter maintenance and driving tips from our experts.",
-    },
-  ];
-
+export default function Home() {
   return (
     <main className="min-h-screen bg-white">
       {/* Hero */}
-      <section className="relative min-h-[85vh] flex flex-col items-center justify-center px-6 py-24 text-center overflow-hidden">
+      <section className="relative min-h-[90vh] flex flex-col justify-end pb-16 md:pb-24 overflow-hidden">
         <Image
-          src="/hero-placeholder.svg"
-          alt=""
+          src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1920"
+          alt="Premium vehicles"
           fill
           priority
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-zinc-900/70" aria-hidden />
-        <div className="relative z-10">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white mb-6 max-w-3xl drop-shadow-lg">
-            We Have Everything Your Car Needs
+        <div className="absolute inset-0 bg-zinc-900/60" aria-hidden />
+        <div className="relative z-10 max-w-6xl mx-auto w-full px-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-4 max-w-2xl">
+            Find Your Perfect Ride
           </h1>
-          <p className="text-lg sm:text-xl text-zinc-200 mb-10 max-w-xl mx-auto drop-shadow-md">
-            Premium vehicles. Trusted service. iDrive.
+          <p className="text-lg sm:text-xl text-zinc-200 mb-8 max-w-xl">
+            Premium pre-owned vehicles. Quality inspected. Transparent pricing.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4">
             <a
               href="#inventory"
-              className="inline-block bg-red-600 text-white font-medium px-8 py-4 rounded-lg hover:bg-red-700 transition-colors shadow-lg"
+              className="inline-block bg-red-600 text-white font-semibold px-8 py-4 rounded-lg hover:bg-red-700 transition-colors shadow-lg text-center"
             >
               Browse Inventory
             </a>
             <a
               href="#appointment"
-              className="inline-block border-2 border-white text-white font-medium px-8 py-4 rounded-lg hover:bg-white hover:text-zinc-900 transition-colors"
+              className="inline-block border-2 border-white text-white font-semibold px-8 py-4 rounded-lg hover:bg-white hover:text-zinc-900 transition-colors text-center"
             >
               Book Appointment
             </a>
@@ -92,16 +65,23 @@ export default async function Home() {
       </section>
 
       {/* Car Categories */}
-      <section className="px-6 py-16 md:py-24 bg-zinc-100">
+      <section className="px-6 py-16 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-zinc-900 mb-12 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-12 text-center">
             Shop by Category
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
-            {categories.map((cat) => (
+            {[
+              { name: "SUV", icon: "🚙" },
+              { name: "Sedan", icon: "🚗" },
+              { name: "Coupe", icon: "🏎️" },
+              { name: "Truck", icon: "🛻" },
+              { name: "EV / Hybrid", icon: "⚡" },
+              { name: "Luxury", icon: "✨" },
+            ].map((cat) => (
               <div
                 key={cat.name}
-                className="bg-white rounded-xl border border-zinc-200 shadow-sm p-6 sm:p-8 hover:shadow-xl hover:-translate-y-1 hover:border-zinc-300 transition-all duration-300 cursor-pointer group"
+                className="bg-white rounded-xl border border-zinc-200 shadow-sm p-6 sm:p-8 hover:shadow-lg hover:-translate-y-0.5 hover:border-zinc-300 transition-all duration-300 cursor-pointer group"
               >
                 <div className="w-14 h-14 rounded-lg bg-zinc-100 flex items-center justify-center text-2xl mb-4 group-hover:bg-red-50 transition-colors">
                   {cat.icon}
@@ -114,93 +94,105 @@ export default async function Home() {
       </section>
 
       {/* Featured Cars */}
-      <section id="inventory" className="px-6 py-16 md:py-24 bg-white">
+      <section id="inventory" className="px-6 py-16 md:py-24 bg-zinc-50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-zinc-900 mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-4">
             Featured Vehicles
           </h2>
-          {featuredCars.length === 0 ? (
-            <p className="text-zinc-500 text-center py-12">No featured vehicles at the moment. Check back soon.</p>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {featuredCars.map((car: CarItem) => (
-                <div
-                  key={car.id}
-                  className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300"
-                >
-                  <div className="aspect-[4/3] bg-zinc-100 relative flex items-center justify-center overflow-hidden">
-                    {car.imageUrl ? (
-                      <Image
-                        src={car.imageUrl}
-                        alt={`${car.make} ${car.model}`}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover"
-                      />
-                    ) : (
-                      <span className="text-zinc-400 text-sm">Car Image</span>
-                    )}
-                  </div>
-                  <div className="p-5 space-y-3">
-                    <h3 className="font-semibold text-zinc-900 text-lg">
-                      {car.make} {car.model}
-                    </h3>
-                    <p className="text-red-600 font-bold text-xl">
-                      ${car.price.toLocaleString()}
-                    </p>
-                    <p className="text-sm text-zinc-500">
-                      {car.year} | {car.mileage.toLocaleString()} mi | {car.transmission}
-                    </p>
+          <p className="text-zinc-600 mb-12 max-w-2xl">
+            Explore our handpicked selection of quality pre-owned vehicles.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {CARS.map((car) => (
+              <div
+                key={car.id}
+                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className="aspect-[4/3] relative overflow-hidden">
+                  <Image
+                    src={car.imageUrl}
+                    alt={`${car.make} ${car.model}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="font-semibold text-zinc-900 text-lg mb-1">
+                    {car.year} {car.make} {car.model}
+                  </h3>
+                  <p className="text-red-600 font-bold text-xl mb-3">
+                    ${car.price.toLocaleString()}
+                  </p>
+                  <p className="text-sm text-zinc-500 mb-4">
+                    {car.fuelType} · {car.transmission}
+                  </p>
+                  <div className="flex gap-3">
                     <a
                       href="#"
-                      className="block w-full text-center bg-red-600 text-white font-medium py-3 rounded-lg hover:bg-red-700 transition-colors mt-2"
+                      className="flex-1 text-center bg-red-600 text-white font-medium py-2.5 rounded-lg hover:bg-red-700 transition-colors"
                     >
                       View Details
                     </a>
+                    <a
+                      href="#"
+                      className="flex-1 text-center border border-zinc-300 text-zinc-900 font-medium py-2.5 rounded-lg hover:bg-zinc-50 transition-colors"
+                    >
+                      Buy Now
+                    </a>
                   </div>
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="px-6 py-16 md:py-24 bg-zinc-100">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-zinc-900 mb-12 text-center">
-            What Our Customers Say
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((t) => (
-              <div
-                key={t.name}
-                className="bg-white rounded-xl border border-zinc-200 p-8 shadow-sm"
-              >
-                <p className="text-zinc-700 text-lg leading-relaxed mb-6">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <p className="font-semibold text-zinc-900">{t.name}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Blog Teaser */}
+      {/* Testimonials */}
+      <section className="px-6 py-16 md:py-24 bg-zinc-900">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-12 text-center">
+            What Our Customers Say
+          </h2>
+          <div className="grid sm:grid-cols-3 gap-8 overflow-x-auto pb-4 sm:overflow-visible sm:pb-0">
+            {TESTIMONIALS.map((t) => (
+              <div
+                key={t.name}
+                className="bg-zinc-800 rounded-xl p-8 flex-shrink-0 sm:flex-shrink min-w-[280px] sm:min-w-0"
+              >
+                <div className="w-14 h-14 rounded-full bg-red-600 flex items-center justify-center text-white font-semibold text-lg mb-6">
+                  {t.initial}
+                </div>
+                <p className="text-zinc-300 text-lg leading-relaxed mb-6">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <p className="font-semibold text-white">{t.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Blog */}
       <section className="px-6 py-16 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-zinc-900 mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-12">
             Latest From iDrive
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
+            {BLOG_POSTS.map((post) => (
               <article
                 key={post.title}
-                className="bg-white rounded-xl border border-zinc-200 overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
+                className="bg-white rounded-xl border border-zinc-200 overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
               >
-                <div className="aspect-video bg-zinc-100 flex items-center justify-center">
-                  <span className="text-zinc-400 text-sm">Image</span>
+                <div className="aspect-video relative overflow-hidden">
+                  <Image
+                    src={post.imageUrl}
+                    alt=""
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover"
+                  />
                 </div>
                 <div className="p-6">
                   <h3 className="font-semibold text-zinc-900 text-lg mb-3 leading-snug">
@@ -211,9 +203,9 @@ export default async function Home() {
                   </p>
                   <a
                     href="#"
-                    className="text-red-600 font-medium hover:underline inline-block"
+                    className="text-red-600 font-semibold hover:underline inline-block"
                   >
-                    Read More
+                    Read More →
                   </a>
                 </div>
               </article>
@@ -222,39 +214,33 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Trust / Value Section */}
+      {/* Trust */}
       <section className="px-6 py-16 md:py-20 bg-zinc-50">
         <div className="max-w-6xl mx-auto">
           <div className="grid sm:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center text-xl mx-auto mb-4">
-                ✓
-              </div>
+              <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center text-xl mx-auto mb-4 text-red-600 font-bold">✓</div>
               <h3 className="font-semibold text-zinc-900 mb-2">Trusted Local Dealer</h3>
-              <p className="text-zinc-600 text-sm">Serving our community for years with integrity and transparency.</p>
+              <p className="text-zinc-600 text-sm">Serving our community with integrity and transparency.</p>
             </div>
             <div>
-              <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center text-xl mx-auto mb-4">
-                ✓
-              </div>
-              <h3 className="font-semibold text-zinc-900 mb-2">Quality Inspected Vehicles</h3>
-              <p className="text-zinc-600 text-sm">Every vehicle undergoes a rigorous multi-point inspection.</p>
+              <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center text-xl mx-auto mb-4 text-red-600 font-bold">✓</div>
+              <h3 className="font-semibold text-zinc-900 mb-2">Quality Inspected</h3>
+              <p className="text-zinc-600 text-sm">Every vehicle undergoes rigorous multi-point inspection.</p>
             </div>
             <div>
-              <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center text-xl mx-auto mb-4">
-                ✓
-              </div>
-              <h3 className="font-semibold text-zinc-900 mb-2">Easy Financing Options</h3>
-              <p className="text-zinc-600 text-sm">Flexible plans to fit your budget. Get pre-approved in minutes.</p>
+              <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center text-xl mx-auto mb-4 text-red-600 font-bold">✓</div>
+              <h3 className="font-semibold text-zinc-900 mb-2">Easy Financing</h3>
+              <p className="text-zinc-600 text-sm">Flexible plans. Get pre-approved in minutes.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Appointment Section */}
+      {/* Appointment */}
       <section id="appointment" className="px-6 py-16 md:py-24 bg-white">
         <div className="max-w-xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-zinc-900 mb-10 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-10 text-center">
             Book an Appointment
           </h2>
           <AppointmentForm />
@@ -263,12 +249,12 @@ export default async function Home() {
 
       {/* Footer CTA */}
       <section className="px-6 py-14 md:py-16 bg-zinc-100 text-center">
-        <p className="text-xl sm:text-2xl font-semibold text-zinc-900 mb-6">
+        <p className="text-xl sm:text-2xl font-bold text-zinc-900 mb-6">
           Ready to find your next car?
         </p>
         <a
           href="#inventory"
-          className="inline-block bg-red-600 text-white font-medium px-8 py-4 rounded-lg hover:bg-red-700 transition-colors"
+          className="inline-block bg-red-600 text-white font-semibold px-8 py-4 rounded-lg hover:bg-red-700 transition-colors"
         >
           Browse Inventory
         </a>
@@ -277,52 +263,47 @@ export default async function Home() {
       {/* Footer */}
       <footer className="bg-zinc-900 text-white">
         <div className="max-w-6xl mx-auto px-6 py-14 md:py-20">
-          <div className="mb-12">
-            <p className="text-sm text-zinc-400 mb-3">Stay updated on new inventory and deals</p>
-            <SubscribeForm />
-          </div>
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
             <div>
-              <p className="text-2xl font-semibold mb-4">iDrive</p>
-              <div className="flex gap-4">
+              <p className="text-2xl font-bold mb-4">iDrive</p>
+              <p className="text-zinc-400 text-sm mb-4">Premium pre-owned vehicles. Quality you can trust.</p>
+              <div className="flex gap-3">
                 {["fb", "tw", "ig", "in"].map((s) => (
-                  <span
+                  <a
                     key={s}
-                    className="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center text-zinc-400 text-xs hover:bg-zinc-600 hover:text-white transition-colors cursor-pointer"
+                    href="#"
+                    className="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center text-zinc-400 text-xs hover:bg-zinc-600 hover:text-white transition-colors"
                   >
                     {s}
-                  </span>
+                  </a>
                 ))}
               </div>
             </div>
-            <nav className="flex flex-wrap gap-8 md:gap-12">
-              <a
-                href="#inventory"
-                className="text-zinc-400 hover:text-white transition-colors"
-              >
-                Inventory
-              </a>
-              <a
-                href="#"
-                className="text-zinc-400 hover:text-white transition-colors"
-              >
-                Financing
-              </a>
-              <a
-                href="#"
-                className="text-zinc-400 hover:text-white transition-colors"
-              >
-                Locations
-              </a>
-              <a
-                href="#"
-                className="text-zinc-400 hover:text-white transition-colors"
-              >
-                Contact
-              </a>
+            <nav>
+              <h4 className="font-semibold mb-4">Inventory</h4>
+              <ul className="space-y-2">
+                <li><a href="#inventory" className="text-zinc-400 hover:text-white transition-colors">All Vehicles</a></li>
+                <li><a href="#" className="text-zinc-400 hover:text-white transition-colors">SUVs</a></li>
+                <li><a href="#" className="text-zinc-400 hover:text-white transition-colors">Sedans</a></li>
+                <li><a href="#" className="text-zinc-400 hover:text-white transition-colors">Trucks</a></li>
+                <li><a href="#" className="text-zinc-400 hover:text-white transition-colors">EV / Hybrid</a></li>
+              </ul>
             </nav>
+            <nav>
+              <h4 className="font-semibold mb-4">Services</h4>
+              <ul className="space-y-2">
+                <li><a href="#appointment" className="text-zinc-400 hover:text-white transition-colors">Book Appointment</a></li>
+                <li><a href="#" className="text-zinc-400 hover:text-white transition-colors">Financing</a></li>
+                <li><a href="#" className="text-zinc-400 hover:text-white transition-colors">Trade-In</a></li>
+                <li><a href="#" className="text-zinc-400 hover:text-white transition-colors">Service</a></li>
+              </ul>
+            </nav>
+            <div>
+              <h4 className="font-semibold mb-4">Stay Updated</h4>
+              <SubscribeForm />
+            </div>
           </div>
-          <div className="mt-14 pt-8 border-t border-zinc-700">
+          <div className="pt-8 border-t border-zinc-700">
             <p className="text-sm text-zinc-500">
               © {new Date().getFullYear()} iDrive. All rights reserved.
             </p>
