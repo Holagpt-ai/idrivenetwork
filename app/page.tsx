@@ -64,44 +64,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Car Categories */}
-      <section className="px-6 py-16 md:py-24 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-12 text-center">
-            Shop by Category
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
-            {[
-              { name: "SUV", icon: "🚙" },
-              { name: "Sedan", icon: "🚗" },
-              { name: "Coupe", icon: "🏎️" },
-              { name: "Truck", icon: "🛻" },
-              { name: "EV / Hybrid", icon: "⚡" },
-              { name: "Luxury", icon: "✨" },
-            ].map((cat) => (
-              <div
-                key={cat.name}
-                className="bg-white rounded-xl border border-zinc-200 shadow-sm p-6 sm:p-8 hover:shadow-lg hover:-translate-y-0.5 hover:border-zinc-300 transition-all duration-300 cursor-pointer group"
-              >
-                <div className="w-14 h-14 rounded-lg bg-zinc-100 flex items-center justify-center text-2xl mb-4 group-hover:bg-red-50 transition-colors">
-                  {cat.icon}
-                </div>
-                <h3 className="text-lg font-medium text-zinc-900">{cat.name}</h3>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Featured Cars */}
-      <section id="inventory" className="px-6 py-16 md:py-24 bg-zinc-50">
+      <section id="inventory" className="px-6 py-12 md:py-20 bg-zinc-50 -mt-px">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-4">
-            Featured Vehicles
-          </h2>
-          <p className="text-zinc-600 mb-12 max-w-2xl">
-            Explore our handpicked selection of quality pre-owned vehicles.
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-2">
+                Featured Vehicles
+              </h2>
+              <p className="text-zinc-600 max-w-2xl">
+                Explore our handpicked selection of quality pre-owned vehicles.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {["All", "SUV", "Sedan", "Coupe", "Truck", "EV / Hybrid", "Luxury"].map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    cat === "All"
+                      ? "bg-red-600 text-white hover:bg-red-700"
+                      : "bg-zinc-200/80 text-zinc-700 hover:bg-zinc-300/90"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {CARS.map((car) => (
               <div
