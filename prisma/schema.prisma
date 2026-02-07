@@ -29,6 +29,8 @@ model Car {
   fuelType     String
   imageUrl     String
   isFeatured   Boolean  @default(false)
+  city         String?
+  zipCode      String?
   createdAt    DateTime @default(now())
 }
 
