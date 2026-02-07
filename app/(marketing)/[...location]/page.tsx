@@ -3,7 +3,6 @@ export const dynamic = "force-dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
 import {
   LOCATIONS,
   LISTING_TYPES,
@@ -65,21 +64,7 @@ export default async function LocationPage({ params }: PageProps) {
 
   const locName = getLocationDisplayName(loc);
 
-  let cars: { id: string; make: string; model: string; year: number; price: number; mileage: number; transmission: string; imageUrl: string }[] = [];
-  if (prisma) {
-    const where = loc.zipCode
-      ? { zipCode: loc.zipCode }
-      : { city: { equals: loc.city, mode: "insensitive" as const } };
-    cars = await prisma.car.findMany({
-      where,
-      orderBy: { createdAt: "desc" },
-    });
-    if (cars.length === 0) {
-      cars = await prisma.car.findMany({
-        orderBy: { createdAt: "desc" },
-      });
-    }
-  }
+  const cars: { id: string; make: string; model: string; year: number; price: number; mileage: number; transmission: string; imageUrl: string }[] = [];
 
   type CarItem = (typeof cars)[number];
 

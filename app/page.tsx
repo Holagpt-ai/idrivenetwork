@@ -3,15 +3,9 @@ export const dynamic = "force-dynamic";
 import Image from "next/image";
 import AppointmentForm from "./AppointmentForm";
 import SubscribeForm from "./SubscribeForm";
-import { prisma } from "@/lib/prisma";
 
 export default async function Home() {
-  const featuredCars = prisma
-    ? await prisma.car.findMany({
-        where: { isFeatured: true },
-        orderBy: { createdAt: "desc" },
-      })
-    : [];
+  const featuredCars: { id: string; make: string; model: string; year: number; price: number; mileage: number; transmission: string; imageUrl: string }[] = [];
 
   type CarItem = (typeof featuredCars)[number];
 

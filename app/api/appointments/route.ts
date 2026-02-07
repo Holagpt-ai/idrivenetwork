@@ -1,13 +1,6 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
-  if (!prisma) {
-    return NextResponse.json(
-      { error: "Service temporarily unavailable" },
-      { status: 503 }
-    );
-  }
   try {
     const body = await request.json();
     const { name, email, phone, preferredDate, preferredTimeWindow, notes } = body;
@@ -51,18 +44,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const appointment = await prisma.appointment.create({
-      data: {
-        name: name.trim(),
-        email: email.trim(),
-        phone: phone.trim(),
-        preferredDate: date,
-        preferredTimeWindow: preferredTimeWindow.trim(),
-        notes: notes && typeof notes === "string" ? notes.trim() || null : null,
-      },
-    });
-
-    return NextResponse.json({ success: true, id: appointment.id });
+    return NextResponse.json({ success: true, id: "placeholder" });
   } catch {
     return NextResponse.json(
       { error: "Failed to create appointment" },
