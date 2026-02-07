@@ -70,6 +70,75 @@ export default function Home() {
         </div>
       </section>
 
+      {/* This Week's Inventory Specials */}
+      <section className="px-6 py-16 md:py-20 bg-zinc-900 -mt-px">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-10">
+            <p className="text-red-500/80 text-sm font-medium tracking-wide uppercase mb-2">Limited time</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+              This Week&apos;s Inventory Specials
+            </h2>
+            <p className="text-zinc-400 max-w-xl">
+              Handpicked deals on quality inspected vehicles. Act fast—these won&apos;t last.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {CARS.slice(0, 4).map((car) => (
+              <div
+                key={car.id}
+                className="group relative bg-zinc-800 rounded-xl overflow-hidden hover:bg-zinc-800/90 transition-all duration-300 hover:-translate-y-0.5"
+              >
+                <span className="absolute top-3 left-3 z-10 bg-red-600/95 text-white text-xs font-semibold px-2.5 py-1 rounded-md tracking-wide">
+                  SPECIAL
+                </span>
+                <div className="aspect-[4/3] relative overflow-hidden">
+                  <Image
+                    src={car.imageUrl}
+                    alt={`${car.make} ${car.model}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="font-semibold text-white text-lg mb-1">
+                    {car.year} {car.make} {car.model}
+                  </h3>
+                  <p className="text-red-400 font-bold text-xl mb-3">
+                    ${car.price.toLocaleString()}
+                  </p>
+                  <p className="text-sm text-zinc-400 mb-4">
+                    {car.fuelType} · {car.transmission}
+                  </p>
+                  <div className="flex gap-3">
+                    <a
+                      href="#inventory"
+                      className="flex-1 text-center bg-red-600 text-white font-medium py-2.5 rounded-lg hover:bg-red-700 transition-colors"
+                    >
+                      View Details
+                    </a>
+                    <a
+                      href="#inventory"
+                      className="flex-1 text-center border border-zinc-500 text-zinc-300 font-medium py-2.5 rounded-lg hover:bg-zinc-700 transition-colors"
+                    >
+                      Buy Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <a
+              href="#inventory"
+              className="inline-block text-zinc-400 hover:text-white font-medium text-sm transition-colors"
+            >
+              View all inventory →
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Cars */}
       <section id="inventory" className="px-6 py-12 md:py-20 bg-zinc-50 -mt-px">
         <div className="max-w-6xl mx-auto">
