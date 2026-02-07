@@ -1,18 +1,24 @@
 import Image from "next/image";
 import AppointmentForm from "./AppointmentForm";
 import SubscribeForm from "./SubscribeForm";
+import { INVENTORY } from "@/lib/inventory";
 
-const CARS = [
-  { id: "1", make: "BMW", model: "330i xDrive", year: 2024, price: 45990, fuelType: "Gasoline", transmission: "Automatic", imageUrl: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600" },
-  { id: "2", make: "Mercedes-Benz", model: "GLC 300", year: 2023, price: 52450, fuelType: "Gasoline", transmission: "9G-Tronic", imageUrl: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600" },
-  { id: "3", make: "Porsche", model: "911 Carrera", year: 2024, price: 118200, fuelType: "Gasoline", transmission: "PDK", imageUrl: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600" },
-  { id: "4", make: "Tesla", model: "Model 3 Long Range", year: 2024, price: 41990, fuelType: "Electric", transmission: "Single-Speed", imageUrl: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=600" },
-  { id: "5", make: "Ford", model: "F-150 Lightning", year: 2024, price: 54995, fuelType: "Electric", transmission: "Single-Speed", imageUrl: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600" },
-  { id: "6", make: "Audi", model: "Q5 Premium", year: 2023, price: 48900, fuelType: "Gasoline", transmission: "Automatic", imageUrl: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600" },
-  { id: "7", make: "Lexus", model: "RX 350", year: 2024, price: 52350, fuelType: "Hybrid", transmission: "CVT", imageUrl: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600" },
-  { id: "8", make: "Honda", model: "CR-V EX", year: 2023, price: 32900, fuelType: "Gasoline", transmission: "CVT", imageUrl: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=600" },
-  { id: "9", make: "Toyota", model: "Camry XSE", year: 2024, price: 35400, fuelType: "Gasoline", transmission: "Automatic", imageUrl: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=600" },
-];
+const CARS = INVENTORY.map((c, i) => ({
+  id: String(i + 1),
+  ...c,
+  imageUrl: [
+    "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600",
+    "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600",
+    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600",
+    "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=600",
+    "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600",
+    "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600",
+    "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600",
+    "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=600",
+    "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=600",
+  ][i],
+}));
+
 
 const TESTIMONIALS = [
   { name: "Sarah Mitchell", quote: "Best car buying experience I've ever had. The team at iDrive made everything seamless—from test drive to paperwork.", initial: "SM" },

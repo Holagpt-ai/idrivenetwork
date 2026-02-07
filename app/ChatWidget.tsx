@@ -69,11 +69,15 @@ export default function ChatWidget() {
       {open && (
         <div className="fixed bottom-24 right-6 z-50 w-full max-w-sm rounded-xl border border-zinc-200 bg-white shadow-xl flex flex-col overflow-hidden" role="dialog" aria-label="Chat support">
           <div className="bg-zinc-900 text-white px-4 py-3 font-medium">
-            iDrive Support
+            iDrive Assistant
           </div>
           <div className="h-80 overflow-y-auto p-4 space-y-3 flex flex-col">
             {messages.length === 0 && (
-              <p className="text-zinc-500 text-sm">How can we help?</p>
+              <div className="flex justify-start">
+                <div className="max-w-[85%] rounded-lg px-3 py-2 text-sm bg-zinc-100 text-zinc-900 whitespace-pre-line">
+                  Hi! I&apos;m the iDrive assistant. I can help you explore our inventory, compare prices, or answer questions about our vehicles. How can I help you today?
+                </div>
+              </div>
             )}
             {messages.map((m, i) => (
               <div
