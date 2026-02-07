@@ -8,6 +8,7 @@ export type InventoryItem = {
   city: string | null;
   zipCode: string | null;
   isFeatured: boolean;
+  fuelType: string;
 };
 
 export async function getInventorySummary(limit = 10): Promise<InventoryItem[]> {
@@ -22,6 +23,7 @@ export async function getInventorySummary(limit = 10): Promise<InventoryItem[]> 
       city: true,
       zipCode: true,
       isFeatured: true,
+      fuelType: true,
     },
   });
   return cars;

@@ -139,6 +139,7 @@ export default function AppointmentForm() {
       <button
         type="submit"
         disabled={status === "loading"}
+        aria-busy={status === "loading"}
         className="w-full bg-red-600 text-white font-medium py-4 rounded-lg hover:bg-red-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {status === "loading" ? "Submitting..." : "Request Appointment"}

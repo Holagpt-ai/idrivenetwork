@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
@@ -77,6 +78,8 @@ export default async function LocationPage({ params }: PageProps) {
     });
   }
 
+  type CarItem = (typeof cars)[number];
+
   return (
     <main className="min-h-screen bg-white">
       <header className="border-b border-zinc-200 px-6 py-4">
@@ -104,14 +107,20 @@ export default async function LocationPage({ params }: PageProps) {
             </p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {cars.map((car) => (
+              {cars.map((car: CarItem) => (
                 <div
                   key={car.id}
                   className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300"
                 >
                   <div className="aspect-[4/3] bg-zinc-100 relative flex items-center justify-center overflow-hidden">
                     {car.imageUrl ? (
-                      <img src={car.imageUrl} alt={`${car.make} ${car.model}`} className="w-full h-full object-cover" />
+                      <Image
+                        src={car.imageUrl}
+                        alt={`${car.make} ${car.model}`}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover"
+                      />
                     ) : (
                       <span className="text-zinc-400 text-sm">Car Image</span>
                     )}

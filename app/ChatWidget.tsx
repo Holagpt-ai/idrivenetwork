@@ -67,7 +67,7 @@ export default function ChatWidget() {
       </button>
 
       {open && (
-        <div className="fixed bottom-24 right-6 z-50 w-full max-w-sm rounded-xl border border-zinc-200 bg-white shadow-xl flex flex-col overflow-hidden">
+        <div className="fixed bottom-24 right-6 z-50 w-full max-w-sm rounded-xl border border-zinc-200 bg-white shadow-xl flex flex-col overflow-hidden" role="dialog" aria-label="Chat support">
           <div className="bg-zinc-900 text-white px-4 py-3 font-medium">
             iDrive Support
           </div>
@@ -92,7 +92,7 @@ export default function ChatWidget() {
               </div>
             ))}
             {loading && (
-              <div className="flex justify-start">
+              <div className="flex justify-start" aria-live="polite" aria-busy="true">
                 <div className="bg-zinc-100 rounded-lg px-3 py-2 text-sm text-zinc-500">
                   ...
                 </div>
@@ -103,20 +103,26 @@ export default function ChatWidget() {
             )}
             <div ref={bottomRef} />
           </div>
-          <form onSubmit={handleSubmit} className="p-3 border-t border-zinc-200">
+          <form onSubmit={handleSubmit} className="p-3 border-t border-zinc-200" aria-label="Chat form">
             <div className="flex gap-2">
+              <label htmlFor="chat-input" className="sr-only">
+                Type a message
+              </label>
               <input
                 ref={inputRef}
+                id="chat-input"
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 disabled={loading}
                 placeholder="Type a message..."
+                aria-busy={loading}
                 className="flex-1 rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20 disabled:opacity-60"
               />
               <button
                 type="submit"
                 disabled={loading || !input.trim()}
+                aria-label="Send message"
                 className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 Send

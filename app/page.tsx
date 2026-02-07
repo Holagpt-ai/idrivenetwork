@@ -1,3 +1,4 @@
+import Image from "next/image";
 import AppointmentForm from "./AppointmentForm";
 import SubscribeForm from "./SubscribeForm";
 import { prisma } from "@/lib/prisma";
@@ -7,6 +8,8 @@ export default async function Home() {
     where: { isFeatured: true },
     orderBy: { createdAt: "desc" },
   });
+
+  type CarItem = (typeof featuredCars)[number];
 
   const categories = [
     { name: "SUV", icon: "🚙" },
@@ -57,11 +60,15 @@ export default async function Home() {
     <main className="min-h-screen bg-white">
       {/* Hero */}
       <section className="relative min-h-[85vh] flex flex-col items-center justify-center px-6 py-24 text-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/hero-placeholder.svg')" }}
+        <Image
+          src="/hero-placeholder.svg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-zinc-900/70" />
+        <div className="absolute inset-0 bg-zinc-900/70" aria-hidden />
         <div className="relative z-10">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white mb-6 max-w-3xl drop-shadow-lg">
             We Have Everything Your Car Needs
@@ -118,14 +125,20 @@ export default async function Home() {
             <p className="text-zinc-500 text-center py-12">No featured vehicles at the moment. Check back soon.</p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {featuredCars.map((car) => (
+              {featuredCars.map((car: CarItem) => (
                 <div
                   key={car.id}
                   className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300"
                 >
                   <div className="aspect-[4/3] bg-zinc-100 relative flex items-center justify-center overflow-hidden">
                     {car.imageUrl ? (
-                      <img src={car.imageUrl} alt={`${car.make} ${car.model}`} className="w-full h-full object-cover" />
+                      <Image
+                        src={car.imageUrl}
+                        alt={`${car.make} ${car.model}`}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover"
+                      />
                     ) : (
                       <span className="text-zinc-400 text-sm">Car Image</span>
                     )}

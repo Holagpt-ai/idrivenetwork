@@ -40,28 +40,36 @@ export default function SubscribeForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-md">
       <div className="flex flex-col sm:flex-row gap-3">
+        <label htmlFor="subscribe-email" className="sr-only">
+          Email address
+        </label>
         <input
-        name="email"
-        type="email"
-        required
-        disabled={status === "loading"}
-        placeholder="Your email"
-        className="flex-1 rounded-lg border border-zinc-600 bg-zinc-800 px-4 py-2.5 text-white placeholder-zinc-400 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20 disabled:opacity-60"
-      />
-      <input
-        name="zipCode"
-        type="text"
-        disabled={status === "loading"}
-        placeholder="ZIP (optional)"
-        maxLength={10}
-        className="w-full sm:w-28 rounded-lg border border-zinc-600 bg-zinc-800 px-4 py-2.5 text-white placeholder-zinc-400 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20 disabled:opacity-60"
-      />
+          id="subscribe-email"
+          name="email"
+          type="email"
+          required
+          disabled={status === "loading"}
+          placeholder="Your email"
+          className="flex-1 rounded-lg border border-zinc-600 bg-zinc-800 px-4 py-2.5 text-white placeholder-zinc-400 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20 disabled:opacity-60"
+        />
+        <label htmlFor="subscribe-zip" className="sr-only">
+          ZIP code (optional)
+        </label>
+        <input
+          id="subscribe-zip"
+          name="zipCode"
+          type="text"
+          disabled={status === "loading"}
+          placeholder="ZIP (optional)"
+          maxLength={10}
+          className="w-full sm:w-28 rounded-lg border border-zinc-600 bg-zinc-800 px-4 py-2.5 text-white placeholder-zinc-400 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20 disabled:opacity-60"
+        />
       <button
         type="submit"
         disabled={status === "loading"}
         className="rounded-lg bg-red-600 px-5 py-2.5 font-medium text-white hover:bg-red-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
       >
-        {status === "loading" ? "..." : "Subscribe"}
+        {status === "loading" ? "Subscribing..." : "Subscribe"}
       </button>
       </div>
       {status === "success" && (

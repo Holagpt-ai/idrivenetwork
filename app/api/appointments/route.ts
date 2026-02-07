@@ -57,8 +57,7 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ success: true, id: appointment.id });
-  } catch (error) {
-    console.error("Appointment creation failed:", error);
+  } catch {
     return NextResponse.json(
       { error: "Failed to create appointment" },
       { status: 500 }
