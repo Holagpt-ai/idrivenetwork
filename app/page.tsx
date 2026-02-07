@@ -1,4 +1,5 @@
 import AppointmentForm from "./AppointmentForm";
+import SubscribeForm from "./SubscribeForm";
 import { prisma } from "@/lib/prisma";
 
 export default async function Home() {
@@ -265,6 +266,10 @@ export default async function Home() {
       {/* Footer */}
       <footer className="bg-zinc-900 text-white">
         <div className="max-w-6xl mx-auto px-6 py-14 md:py-20">
+          <div className="mb-12">
+            <p className="text-sm text-zinc-400 mb-3">Stay updated on new inventory and deals</p>
+            <SubscribeForm />
+          </div>
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12">
             <div>
               <p className="text-2xl font-semibold mb-4">iDrive</p>

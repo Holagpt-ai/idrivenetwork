@@ -31,3 +31,10 @@ model Car {
   isFeatured   Boolean  @default(false)
   createdAt    DateTime @default(now())
 }
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  zipCode   String?
+  createdAt DateTime @default(now())
+}
